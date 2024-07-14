@@ -30,7 +30,11 @@ for query1 in inputdata1:
                     articles_id = data2['id']
                     articles_text = data2['text']
                     if article_id == articles_id:
-                        map_articles = {"law_id": law_id, "article_id": article_id, "article_text": articles_text}
+                        map_articles = {"law_id": law_id, 
+                                        "article_id": article_id, 
+                                        "article_text": articles_text
+                                        }
+                        
         relevant_articles.append(map_articles)
 
     extracted_data.append({
