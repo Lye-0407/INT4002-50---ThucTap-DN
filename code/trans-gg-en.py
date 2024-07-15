@@ -141,7 +141,5 @@ for query in data:
 
     relevant_article['article_text'] = join_article_text(split_text_list)
 
-
-
 with open(translated_file_path, 'w', encoding='utf-8') as outputfile:
     json.dump(data, outputfile, ensure_ascii = False, indent = 4)
