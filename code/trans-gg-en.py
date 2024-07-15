@@ -115,16 +115,32 @@ def flatten_json(nested_json):
     flatten(nested_json)
     return out
 
+def split_article_text(article_text, delimiter="\n\n"):
+    return article_text.split(delimiter)
+
+def join_article_text(article_list, delimiter="\n\n"):
+    return delimiter.join(article_list)
+
 for query in data:
+
+    split_text_list = []
+
+    query['query_text'] = gg_translation(query['query_text'])
 
     for relevant_article in query['relevant_article']:
 
-        relevant_article['article_text'] = extract_clause(relevant_article['article_text'])
+        relevant_article['law_id'] = gg_translation(relevant_article['law_id'])
 
-data = flatten_json(data)
+        relevant_article['article_text'] = (split_article_text(relevant_article['article_text']))
 
-for key, value in data.items():
-    data[key]= gg_translation(value)
+        for article_text in relevant_article['article_text']:
+
+            article_text = gg_translation(article_text)
+
+            split_text_list.append(article_text)
+
+    relevant_article['article_text'] = join_article_text(split_text_list)
+
 
 
 with open(translated_file_path, 'w', encoding='utf-8') as outputfile:

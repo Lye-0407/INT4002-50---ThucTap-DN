@@ -28,7 +28,6 @@ for query in data:
 
     if 'article_text' in relevant_article:
         relevant_article['article_text'] = translate_text(relevant_article['article_text'])
-    
 
 with open(translated_file_path, 'w', encoding='utf-8') as outputfile:
     json.dump(data, outputfile, ensure_ascii = False, indent = 4)
